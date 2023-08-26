@@ -33,10 +33,27 @@ class Queue:
 
         return result
     
-    
-    def Display(self):
+
+    def __len__(self):
         pointer = self.node
 
+        count = 0
         while pointer.Next is not None:
-            print(pointer.Data)
+            count += 1
             pointer = pointer.Next
+
+        return count
+
+    
+    def __str__(self):
+        pointer = self.node
+
+        listStr = ""
+
+        while pointer.Next is not None:
+            listStr += " | "+str(pointer.Data)
+            pointer = pointer.Next
+        
+        listStr += " |"
+
+        return listStr

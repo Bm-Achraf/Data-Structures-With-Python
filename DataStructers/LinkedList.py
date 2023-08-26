@@ -6,7 +6,9 @@ class LinkedList:
         self.node = Node()
 
 
-#--------------------------------------------
+
+
+
     def AddLast(self, data):
 
         if(self.node.Data is None):
@@ -21,18 +23,27 @@ class LinkedList:
         
         pointer.Next = Node(data, Next=None)
 
-#--------------------------------------------
+
+
+
+
 
     def Init(self, *args):
         for i in args:
             self.AddLast(i)
 
-#--------------------------------------------
+
+
+
+
 
     def AddFirst(self, data):
         self.node = Node(data, Next=self.node)
 
-#--------------------------------------------
+
+
+
+
 
     def InsertAfter(self, target, data):
         pointer = self.node
@@ -49,7 +60,9 @@ class LinkedList:
         return
           
 
-#--------------------------------------------
+
+
+
 
     def InsertBefore(self, target, data):
         pointer = self.node
@@ -61,7 +74,9 @@ class LinkedList:
 
         prepointer.Next = Node(data, pointer)        
 
-#--------------------------------------------
+
+
+
     def RemoveLast(self):
         pointer = self.node
 
@@ -69,14 +84,19 @@ class LinkedList:
             pointer = pointer.Next
 
         pointer.Next = None
-#--------------------------------------------
+        
+
+
     def RemoveFirst(self):
         if(self.node.Next is not None):
             self.node = self.node.Next
             return
         
         self.node = None
-#--------------------------------------------
+        
+
+
+
     def RemoveNth(self, data):
         pointer = self.node
         prepointer = self.node
@@ -97,14 +117,31 @@ class LinkedList:
             prepointer.Next = pointer.Next
         else:
             prepointer.Next = None
-#--------------------------------------------
+            
+
+
     def Clear(self):
         self.node = None
 
-#--------------------------------------------
-    def Display(self):
+    def __len__(self):
+        pointer = self.node
+        count = 0
+        while pointer.Next is not None:
+            count += 1
+            pointer = pointer.Next
+
+        return count
+
+
+
+    def __str__(self):
         pointer = self.node
 
-        while pointer is not None:
-            print(pointer.Data)
+        listStr = "[ "
+
+        while pointer.Next is not None:
+            listStr += str(pointer.Data)+", "
             pointer = pointer.Next
+        
+        listStr += f"{pointer.Data} ]"
+        return listStr

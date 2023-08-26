@@ -4,7 +4,7 @@ class Stack:
     def __init__(self):
         self.node = Node()
 
-    def Push(self,data):
+    def Push(self,data)->None:
         if(self.node is None):
             self.node = Node(data, Next=None)
             return
@@ -18,9 +18,26 @@ class Stack:
         result = pointer.Data
         return result
     
-    def display(self):
+    def __len__(self)->int:
         pointer = self.node
 
+        count = 0
         while pointer.Next is not None:
-            print(pointer.Data)
+            count += 1
             pointer = pointer.Next
+
+        return count
+
+
+    def __str__(self):
+        pointer = self.node
+
+        listStr = " ---\n"
+        while pointer.Next.Next is not None:
+            #print(pointer.Data)
+            listStr += "| "+str(pointer.Data)+" |\n ---\n"
+            pointer = pointer.Next
+        
+        listStr += f"| {pointer.Data} |\n ---"
+
+        return listStr
